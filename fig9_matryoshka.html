@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Figure 9: Matryoshka</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>body{margin:0;padding:0;font-family:'Segoe UI',Calibri,Arial,sans-serif;background:#FAFBFC}
+#chart{width:100%;max-width:920px;margin:0 auto}</style>
+</head><body><div id="chart"></div>
+<script>
+var spec={"data": [{"type": "treemap", "labels": ["Total: >$17T GDP-at-Risk", "Layer 1: Fire in the Gulf", "Layer 2: AI & Labour", "Layer 3: Global Debt ($348T)", "Shadow Credit Layer", "Layer 4: Deglobalisation", "Layer 5: Climate Transition", "Layer 6: Demographics"], "parents": ["", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk", "Total: >$17T GDP-at-Risk"], "values": [17.0, 2.8, 1.5, 4.2, 0.8, 3.1, 2.5, 2.1], "marker": {"colors": ["#2C3E50", "#943126", "#B5634B", "#C4915E", "#7D6B8A", "#5B6EA8", "#5B8A8A", "#6B8E6B"], "line": {"width": 1.5, "color": "white"}}, "textinfo": "label+value", "texttemplate": "%{label}<br>$%{value:.1f}T", "hovertemplate": "<b>%{label}</b><br>GDP-at-Risk: $%{value:.1f}T<br>%{customdata}<extra></extra>", "customdata": ["Total estimated GDP-at-risk", "Hormuz closure, $120/bbl oil", "92M jobs displaced", "r > g in US, refinancing wall", "9.2% default rate", "$2.63T defence spending", "$275T investment needed", "$175T pension gap"], "textfont": {"size": 12, "color": "white"}, "pathbar": {"visible": false}}], "layout": {"paper_bgcolor": "#FAFBFC", "font": {"family": "Segoe UI, Calibri, Arial, sans-serif", "color": "#2C3E50"}, "title": {"text": "Figure 9: The Full Matryoshka \u2014 Seven Nested Layers of Global Risk", "font": {"size": 14}}, "margin": {"l": 10, "r": 10, "t": 60, "b": 30}, "height": 520}};
+Plotly.newPlot('chart',spec.data,spec.layout,{responsive:true,displayModeBar:false});
+
+</script></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Figure 8: Factfulness Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>body{margin:0;padding:0;font-family:'Segoe UI',Calibri,Arial,sans-serif;background:#FAFBFC}
+#chart{width:100%;max-width:950px;margin:0 auto}</style>
+</head><body><div id="chart"></div>
+<script>
+var metrics = [{"title": "Extreme Poverty (%)", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025], "y": [55, 48, 40, 35, 33, 25, 15, 9.2, 7.8], "color": "#943126"}, {"title": "Life Expectancy (yrs)", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025], "y": [46, 50, 56, 61, 64, 67, 70, 72.5, 73.3], "color": "#5B8A8A"}, {"title": "Child Mortality (per 1k)", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2024], "y": [250, 200, 160, 120, 93, 75, 52, 39, 37], "color": "#B5634B"}, {"title": "Literacy Rate (%)", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025], "y": [56, 60, 65, 70, 75, 80, 84, 86, 87], "color": "#5B6EA8"}, {"title": "GDP per Capita (real $)", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025], "y": [2500, 3200, 4500, 5500, 6500, 8000, 10500, 13000, 14500], "color": "#6B8E6B"}, {"title": "Global Cooperation Idx", "x": [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2025], "y": [30, 40, 50, 55, 65, 72, 68, 60, 55], "color": "#943126"}];
+var crises = [[1945, 1955], [1979, 1989], [1997, 2003], [2008, 2015], [2020, 2026]];
+
+var traces = [];
+var layout = {
+  grid: {rows: 2, columns: 3, pattern: 'independent'},
+  paper_bgcolor: '#FAFBFC', plot_bgcolor: '#FAFBFC',
+  font: {family: "Segoe UI, Calibri, Arial, sans-serif", color: '#2C3E50', size: 11},
+  margin: {l: 50, r: 20, t: 60, b: 40},
+  title: {text: "Figure 8: The Factfulness Dashboard \u2014 75 Years of Progress Through Crisis", font: {size: 14}},
+  height: 520, showlegend: false,
+};
+
+var shapes = [];
+metrics.forEach(function(m, i) {
+  var xax = i === 0 ? 'x' : 'x' + (i + 1);
+  var yax = i === 0 ? 'y' : 'y' + (i + 1);
+  traces.push({
+    x: m.x, y: m.y, mode: 'lines+markers', marker: {size: 4, color: m.color},
+    line: {color: m.color, width: 1.8}, xaxis: xax, yaxis: yax,
+    hovertemplate: m.title + '<br>%{x}: <b>%{y}</b><extra></extra>'
+  });
+  var xKey = i === 0 ? 'xaxis' : 'xaxis' + (i + 1);
+  var yKey = i === 0 ? 'yaxis' : 'yaxis' + (i + 1);
+  layout[xKey] = {gridcolor: '#E8EAED', linecolor: '#D0D3D8', linewidth: 0.5, range: [1948, 2027], dtick: 20, tickfont: {size: 9}};
+  layout[yKey] = {gridcolor: '#E8EAED', linecolor: '#D0D3D8', linewidth: 0.5, title: {text: m.title, font: {size: 9, color: m.color}}, tickfont: {size: 9}};
+  crises.forEach(function(c) {
+    var xref = i === 0 ? 'x' : 'x' + (i + 1);
+    var yref = (i === 0 ? 'y' : 'y' + (i + 1)) + ' domain';
+    shapes.push({type: 'rect', x0: c[0], x1: c[1], y0: 0, y1: 1, xref: xref, yref: yref, fillcolor: 'rgba(148,49,38,0.05)', line: {width: 0}});
+  });
+});
+layout.shapes = shapes;
+Plotly.newPlot('chart', traces, layout, {responsive: true, displayModeBar: false});
+</script></body></html>
